@@ -3,4 +3,12 @@
 }
 
 <h1>Welcome to Pierre Bakery!</h1>
-<p>@Html.ActionLink("User Accounts", "Index", "Account")</p>
+<div class="row">
+  <div class="col-4">
+    <p>@Html.ActionLink("User Accounts", "Index", "Account")</p>
+    <p>@Html.ActionLink("Create Flavor", "Create", "Flavor")</p>
+  </div>
+  <div class="col-8">
+    <p>testing stuff here</p>
+  </div>
+</div>
