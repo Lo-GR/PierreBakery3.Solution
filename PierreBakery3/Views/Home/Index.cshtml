@@ -2,6 +2,9 @@
   Layout = "_Layout";
 }
 
+@using Bakery.Models;
+@model List<Flavor>
+
 <h1>Welcome to Pierre Bakery!</h1>
 <div class="row">
   <div class="col-4">
@@ -9,6 +12,18 @@
     <p>@Html.ActionLink("Create Flavor", "Create", "Flavor")</p>
   </div>
   <div class="col-8">
-    <p>testing stuff here</p>
+    @if (Model.Any())
+    {
+  <ul>
+    @foreach (Flavor element in Model)
+    {
+      <li>@Html.ActionLink($"{element.FlavorName}", "Details", "Flavors", new { id = element.FlavorId })</li>
+    }
+  </ul>
+} 
+else
+{
+  <h3>No Flavors have been added yet!</h3>
+}
   </div>
 </div>
