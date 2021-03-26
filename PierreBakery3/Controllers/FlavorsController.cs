@@ -44,5 +44,17 @@ namespace Bakery.Controllers
       .FirstOrDefault(flavor => flavor.FlavorId == id);
       return View(model);
     }
+    public ActionResult Edit(int id)
+    {
+      var model = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
+      return View(model);
+    }
+    [HttpPost]
+    public ActionResult Edit(Flavor flavor)
+    {
+      _db.Entry(flavor).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index", "Home");
+    }
   }
 }

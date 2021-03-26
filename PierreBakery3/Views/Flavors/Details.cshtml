@@ -19,11 +19,20 @@ else
   @foreach (FlavorTreat element in Model.JoinEntities)
   {
     <li>@Html.ActionLink($"{element.Treat.TreatName}", "Details", "Treats",new {id = element.TreatId})</li>
-    @using (Html.BeginForm("DeleteTreat", "Flavors"))
+    @if (User.Identity.IsAuthenticated)
     {
-      @Html.Hidden("joinId", @element.FlavorTreatId)
-      <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+      @using (Html.BeginForm("DeleteTreat", "Flavors"))
+      {
+        @Html.Hidden("joinId", @element.FlavorTreatId)
+        <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+      }
     }
   }
   </ul>
+}
+@if (User.Identity.IsAuthenticated)
+{
+<button class="btn btn-danger btn-sm" onclick="location.href='@Url.Action("Delete", new {id = Model.FlavorId})'">Delete this Flavor</button> 
+<button class="btn btn-warning btn-sm" onclick="location.href='@Url.Action("Edit", new {id = Model.FlavorId})'">Edit this Flavor</button> 
+<button class="btn btn-warning btn-sm" onclick="location.href='@Url.Action("AddTreat", new {id = Model.FlavorId})'">Add Treat to this Flavor</button> 
 }
