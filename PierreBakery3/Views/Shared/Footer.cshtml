@@ -1,18 +1,21 @@
 @using System.Security.Claims
-<div id="footer">
-  <p><button class="btn btn-outline-warning btn-sm" onclick="location.href='@Url.Action("Index", "Home")'">Home</button> @if (User.Identity.IsAuthenticated)
+<div id="footer">@if (User.Identity.IsAuthenticated)
 {
-  <p> You are logged in as @User.Identity.Name</p>
+  <p><button class="btn btn-outline-warning btn-sm" onclick="location.href='@Url.Action("Index", "Home")'">Home</button> 
   @using (Html.BeginForm("LogOff", "Account"))
   {
-    <input type="submit" class="btn btn-outline-success btn-sm" value="Log out" />
+    <input type="submit" class="btn btn-outline-success btn-sm" value="Log out of @User.Identity.Name" /> 
   }
+  
+  </p>
 }
 else
 {
+  <p>
+  <button class="btn btn-outline-warning btn-sm" onclick="location.href='@Url.Action("Index", "Home")'">Home</button> 
   <button class="btn btn-outline-success btn-sm" onclick="location.href='@Url.Action("Login", "Account")'">Login</button>
 
   <button class="btn btn-outline-info btn-sm" onclick="location.href='@Url.Action("Register", "Account")'">Register</button>
-}
   </p>
+}
 </div>
