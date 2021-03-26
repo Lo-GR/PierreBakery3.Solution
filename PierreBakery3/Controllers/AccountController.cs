@@ -17,7 +17,7 @@ namespace Bakery.Controllers
         _signInManager = signInManager;
         _db = db;
     }
-    public IActionResult Register()
+    public ActionResult Index()
     {
         return View();
     }
