@@ -12,6 +12,7 @@
     @if (User.Identity.IsAuthenticated)
     {
       <p>@Html.ActionLink("Create Flavor", "Create", "Flavors")</p>
+      <p>@Html.ActionLink("Create Treat", "Create", "Treats")</p>
     }
     else
     {
