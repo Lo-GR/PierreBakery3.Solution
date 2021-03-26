@@ -1,1 +1,18 @@
-<div id="footer"><p>@Html.ActionLink("Home", "Index", "Home")</p></div>
+@using System.Security.Claims
+<div id="footer">
+  <p>@Html.ActionLink("Home", "Index", "Home") @if (User.Identity.IsAuthenticated)
+{
+  <p> You are logged in as @User.Identity.Name</p>
+  @using (Html.BeginForm("LogOff", "Account"))
+  {
+    <input type="submit" class="btn btn-outline-success" value="Log out" />
+  }
+}
+else
+{
+  <button class="btn btn-outline-success" onclick="location.href='@Url.Action("Log in", "Login")'">Login</button>
+
+  <button class="btn btn-outline-info" onclick="location.href='@Url.Action("Register", "Register")'">Register</button>
+}
+  </p>
+</div>
