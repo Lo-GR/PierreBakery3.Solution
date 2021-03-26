@@ -9,7 +9,10 @@
 <div class="row">
   <div class="col-4">
     <p>@Html.ActionLink("User Accounts", "Index", "Account")</p>
-    <p>@Html.ActionLink("Create Flavor", "Create", "Flavor")</p>
+    @if (User.Identity.IsAuthenticated)
+    {
+      <p>@Html.ActionLink("Create Flavor", "Create", "Flavors")</p>
+    }
   </div>
   <div class="col-8">
     @if (Model.Any())
