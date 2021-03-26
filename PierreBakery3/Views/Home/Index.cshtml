@@ -3,7 +3,8 @@
 }
 
 @using Bakery.Models;
-@model List<Flavor>
+@using Bakery.ViewModels;
+@model FlavorTreatViewModel
 
 <h1>Welcome to Pierre Bakery!</h1>
 <div class="row">
@@ -19,19 +20,36 @@
       <p>Login for additional options</p>
     }
   </div>
-  <div class="col-8">
-    @if (Model.Any())
+  <div class="col-4">
+    <h3>List of Flavors</h3>
+    @if (Model.flavorList.Any())
     {
-  <ul>
-    @foreach (Flavor element in Model)
+      <ul>
+        @foreach (Flavor element in Model.flavorList)
+        {
+          <li>@Html.ActionLink($"{element.FlavorName}", "Details", "Flavors", new { id = element.FlavorId })</li>
+        }
+      </ul>
+    } 
+    else
     {
-      <li>@Html.ActionLink($"{element.FlavorName}", "Details", "Flavors", new { id = element.FlavorId })</li>
+      <h4>No Flavors have been added yet!</h4>
     }
-  </ul>
-} 
-else
-{
-  <h3>No Flavors have been added yet!</h3>
-}
+  </div>
+  <div class="col-4">
+    <h3>List of Treats</h3>
+    @if (Model.treatList.Any())
+    {
+      <ul>
+        @foreach (Treat element in Model.treatList)
+        {
+          <li>@Html.ActionLink($"{element.TreatName}", "Details", "Treats", new { id = element.TreatId })</li>
+        }
+      </ul>
+    } 
+    else
+    {
+      <h4>No Treats have been added yet!</h4>
+    }
   </div>
 </div>

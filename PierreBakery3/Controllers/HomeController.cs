@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using System.Security.Claims;
+using Bakery.ViewModels;
 
 namespace Bakery.Controllers
 {
@@ -24,8 +25,10 @@ namespace Bakery.Controllers
       [HttpGet("/")]
       public ActionResult Index()
       {
-        List<Flavor> flavors = _db.Flavors.ToList();
-        return View(flavors);
+        FlavorTreatViewModel model = new FlavorTreatViewModel();
+        model.flavorList = _db.Flavors.ToList();
+        model.treatList =_db.Treats.ToList();
+        return View(model);
       }
     }
 }
