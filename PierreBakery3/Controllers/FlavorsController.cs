@@ -36,10 +36,13 @@ namespace Bakery.Controllers
       return RedirectToAction("Index", "Home");
     }
     [AllowAnonymous]
-    public ActionResult Edit(int id)
+    public ActionResult Details(int id)
     {
-      var thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
-      return View(thisFlavor);
+      var model = _db.Flavors
+      .Include(treat => treat.JoinEntities)
+      .ThenInclude(join => join.Flavor)
+      .FirstOrDefault(flavor => flavor.FlavorId == id);
+      return View(model);
     }
   }
 }
