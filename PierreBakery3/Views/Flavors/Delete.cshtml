@@ -1,0 +1,13 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Bakery.Models.Flavor
+
+<h2>Are you sure you want to delete @Html.DisplayFor(model => model.FlavorName)</h2>
+@using (Html.BeginForm())
+{
+  <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+}
+
+<p>@Html.ActionLink("Go back to Details", "Details", new { id = Model.FlavorId })</p>
