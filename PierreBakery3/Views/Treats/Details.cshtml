@@ -1,0 +1,38 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Bakery.Models;
+@model Treat;
+
+<h2>Treat Details</h2>
+<p>---</p>
+<h3>Name: @Html.DisplayFor(model => model.TreatName)</h3>
+<h3>This treat is avaiable in these flavors:</h3>
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>No Flavors added</p>
+}
+else
+{
+  <ul>
+  @foreach (FlavorTreat element in Model.JoinEntities)
+  {
+    <li>@Html.ActionLink($"{element.Flavor.FlavorName}", "Details", "Flavors",new {id = element.FlavorId})</li>
+    @if (User.Identity.IsAuthenticated)
+    {
+      @using (Html.BeginForm("DeleteFlavor", "Treats"))
+      {
+        @Html.Hidden("joinId", @element.FlavorTreatId)
+        <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+      }
+    }
+  }
+  </ul>
+}
+@if (User.Identity.IsAuthenticated)
+{
+<button class="btn btn-danger btn-sm" onclick="location.href='@Url.Action("Delete", new {id = Model.TreatId})'">Delete this Treat</button> 
+<button class="btn btn-warning btn-sm" onclick="location.href='@Url.Action("Edit", new {id = Model.TreatId})'">Edit this Treat</button> 
+<button class="btn btn-warning btn-sm" onclick="location.href='@Url.Action("AddTreat", new {id = Model.TreatId})'">Add Treat to this Treat</button> 
+}
