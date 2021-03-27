@@ -80,5 +80,18 @@ namespace Bakery.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index", "Home");
     }
+    public ActionResult Delete(int id)
+    {
+      var model = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
+      return View(model);
+    }
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      var deleted = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
+      _db.Treats.Remove(deleted);
+      _db.SaveChanges();
+      return RedirectToAction("Index", "Home");
+    }
   }
 }
