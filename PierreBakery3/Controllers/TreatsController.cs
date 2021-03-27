@@ -68,5 +68,17 @@ namespace Bakery.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index", "Home");
     }
+    public ActionResult Edit(int id)
+    {
+      var model = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
+      return View(model);
+    }
+    [HttpPost]
+    public ActionResult Edit(Treat treat)
+    {
+      _db.Entry(treat).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index", "Home");
+    }
   }
 }
