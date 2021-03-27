@@ -53,7 +53,8 @@ namespace Bakery.Controllers
     [HttpPost]
     public ActionResult AddFlavor(Treat treat, int FlavorId)
     {
-      if (FlavorId != 0)
+      var check = _db.FlavorTreat.FirstOrDefault(entry => entry.FlavorId == FlavorId);
+      if (FlavorId != 0 && check == null)
       {
       _db.FlavorTreat.Add(new FlavorTreat() { FlavorId = FlavorId, TreatId = treat.TreatId });
       }
