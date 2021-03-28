@@ -78,7 +78,7 @@ namespace Bakery.Controllers
     [HttpPost]
     public ActionResult AddTreat(Flavor flavor, int TreatId)
     {
-      var check = _db.FlavorTreat.FirstOrDefault(entry => entry.TreatId == TreatId);
+      var check = _db.FlavorTreat.FirstOrDefault(entry => entry.TreatId == TreatId && entry.FlavorId == flavor.FlavorId);
       if (TreatId != 0 && check == null)
       {
         _db.FlavorTreat.Add(new FlavorTreat() { TreatId = TreatId, FlavorId = flavor.FlavorId });
