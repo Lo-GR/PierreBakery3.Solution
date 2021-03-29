@@ -31,7 +31,7 @@
 ---
 
 ## _Description_ 📃
-This MVC webpage will present it's user with a splash screen with displays of all "Flavors" and "Treats" available. All CRUD functionality is present for both Machine and Engineer data and options are presented in an explorable fashion on the webpage. A user can also register and login into their own personal accounts using passwords. Only logged in users are able to utilize Create, Update, or Delete functionality of classes.
+This MVC webpage will present it's user with a splash screen with displays of all "Flavors" and "Treats" available. All CRUD functionality is present for both Flavor and Treat data and options are presented in an explorable fashion on the webpage. A user can also register and login into their own personal accounts using passwords. Only logged in users are able to utilize Create, Update, or Delete functionality of classes.
 
 This is a practice project for practicing C#, Razor, ASP .NET framework, Entity Framework, MySQl, Databases, Identity and MVC for a course at Epicodus.
 
